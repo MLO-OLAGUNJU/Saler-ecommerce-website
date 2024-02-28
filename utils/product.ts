@@ -3,7 +3,7 @@ export const product = {
   name: "Apple iPhone 13, 64GB",
   description:
     "The Apple iPhone 13 offers cutting-edge technology in a sleek and stylish package. With its powerful A15 Bionic chip, advanced camera system, and stunning Super Retina XDR display, the iPhone 13 delivers exceptional performance and immersive experiences. Its durable design and long battery life ensure you stay connected and entertained throughout the day. Experience the future of smartphones with the iPhone 13.",
-  price: 1200,
+  price: 1999,
   brand: "Apple",
   category: "Phone",
   inStock: true,
