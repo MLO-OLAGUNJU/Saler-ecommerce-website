@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/app/components/Button";
+import ReturnsandDelivery from "@/app/components/products/ReturnsandDelivery";
 import SetColor from "@/app/components/products/SetColor";
 import SetQauntity from "@/app/components/products/SetQauntity";
 import { Rating } from "@mui/material";
@@ -27,7 +28,7 @@ export type SelectedImgType = {
   image: string;
 };
 
-const Horizontal = () => {
+export const Horizontal = () => {
   return <hr className="borderBottom" />;
 };
 
@@ -42,8 +43,6 @@ const ProductDetails: React.FC<ProducDetailsProps> = ({ product }) => {
     qauntity: 1,
     price: product.price,
   });
-
-  console.log(cartProduct);
 
   const productRating =
     product.reviews.reduce((acc: number, item: any) => item.rating + acc, 0) /
@@ -80,50 +79,55 @@ const ProductDetails: React.FC<ProducDetailsProps> = ({ product }) => {
   }, [cartProduct]);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-      <div>Images</div>
-      <div className="flex flex-col gap-2">
-        <h2 className="mb-3 text-5xl font-medium">{product.name}</h2>
-        <div className="flex items-center gap-2">
-          <Rating value={productRating} readOnly />
-          <div>{product.reviews.length} reviews</div>
-        </div>
-        <Horizontal />
-        <div className="text-start">{product.description}</div>
-        <Horizontal />
-        <div className="flex items-center gap-2">
-          <span className=" font-semibold">CATEGORY: </span>
-          <span>{product.category}</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className=" font-semibold">BRAND: </span>
-          <span>{product.brand}</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className=" font-semibold">AVAILABLE: </span>
+    <main className="flex flex-wrap gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 rounded-md gap-12 w-[75%] bg-[#FFFFFF] p-5">
+        <div>Images</div>
+        <div className="flex flex-col gap-2">
+          <h2 className="mb-3 text-3xl font-medium">{product.name}</h2>
+          <div className="flex items-center gap-2">
+            <Rating value={productRating} readOnly />
+            <div>{product.reviews.length} reviews</div>
+          </div>
+          <Horizontal />
+          <div className="text-start">{product.description}</div>
+          <Horizontal />
+          <div className="flex items-center gap-2">
+            <span className=" font-semibold">CATEGORY: </span>
+            <span>{product.category}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className=" font-semibold">BRAND: </span>
+            <span>{product.brand}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className=" font-semibold">AVAILABLE: </span>
 
-          <span className={product.inStock ? "text-[#5BB300]" : "text-red-600"}>
-            {product.inStock ? "In stock" : "Out of stock"}
-          </span>
-        </div>
-        <Horizontal />
-        <SetColor
-          images={product.images}
-          cartProduct={cartProduct}
-          handleColorSelect={handleColorSelect}
-        />
-        <Horizontal />
-        <SetQauntity
-          cartProduct={cartProduct}
-          handleQtyIncrease={handleQtyIncrease}
-          handleQtyDecrease={handleQtyDecrease}
-        />
-        <Horizontal />
-        <div className="">
-          <Button label="Add To Cart" onClick={() => {}} />
+            <span
+              className={product.inStock ? "text-[#5BB300]" : "text-red-600"}
+            >
+              {product.inStock ? "In stock" : "Out of stock"}
+            </span>
+          </div>
+          <Horizontal />
+          <SetColor
+            images={product.images}
+            cartProduct={cartProduct}
+            handleColorSelect={handleColorSelect}
+          />
+          <Horizontal />
+          <SetQauntity
+            cartProduct={cartProduct}
+            handleQtyIncrease={handleQtyIncrease}
+            handleQtyDecrease={handleQtyDecrease}
+          />
+          <Horizontal />
+          <div className="">
+            <Button label="Add To Cart" onClick={() => {}} />
+          </div>
         </div>
       </div>
-    </div>
+      <ReturnsandDelivery />
+    </main>
   );
 };
 

@@ -19,6 +19,7 @@ body {
 }
 
 .borderBottom {
-  border-bottom: 1px solid #b5b3b3;
-  width: 40%;
+  border-bottom: 1px solid #ffffff;
+  margin: 4px 0;
+  width: 100%;
 }
