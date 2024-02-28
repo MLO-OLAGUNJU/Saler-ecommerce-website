@@ -17,3 +17,8 @@ body {
   -webkit-user-select: none;
   background-color: #e6e6e6;
 }
+
+.borderBottom {
+  border-bottom: 1px solid #929292;
+  width: 30%;
+}

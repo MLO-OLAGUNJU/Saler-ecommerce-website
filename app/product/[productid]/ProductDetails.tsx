@@ -8,7 +8,7 @@ interface ProducDetailsProps {
 }
 
 const Horizontal = () => {
-  return <hr className="w-[95%] h-[1px] mt-2 mb-2 bg-[#0F1111]" />;
+  return <hr className="borderBottom" />;
 };
 
 const ProductDetails: React.FC<ProducDetailsProps> = ({ product }) => {
@@ -19,8 +19,8 @@ const ProductDetails: React.FC<ProducDetailsProps> = ({ product }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
       <div>Images</div>
-      <div className="flex flex-col gap-4">
-        <h2 className="text-5xl font-medium">{product.name}</h2>
+      <div className="flex flex-col gap-2">
+        <h2 className="mb-3 text-5xl font-medium">{product.name}</h2>
         <div className="flex items-center gap-2">
           <Rating value={productRating} readOnly />
           <div>{product.reviews.length} reviews</div>
@@ -28,22 +28,27 @@ const ProductDetails: React.FC<ProducDetailsProps> = ({ product }) => {
         <Horizontal />
         <div className="text-start">{product.description}</div>
         <Horizontal />
-        <div>
-          <span className=" font-semibold">
-            CATEGORY:<span>{product.category}</span>
+        <div className="flex items-center gap-2">
+          <span className=" font-semibold">CATEGORY: </span>
+          <span>{product.category}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className=" font-semibold">BRAND: </span>
+          <span>{product.brand}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className=" font-semibold">AVAILABLE: </span>
+
+          <span className={product.inStock ? "text-[#5BB300]" : "text-red-600"}>
+            {product.inStock ? "In stock" : "Out of stock"}
           </span>
         </div>
-        <div>
-          <span className=" font-semibold">
-            CATEGORY:<span>{product.brand}</span>
-          </span>
-        </div>
-        <div>
-          <span className=" font-semibold">
-            CATEGORY:
-            <span>{product.inStock ? "In stock" : "Out of stock"}</span>
-          </span>
-        </div>
+        <Horizontal />
+        <div>color</div>
+        <Horizontal />
+        <div>qaulity</div>
+        <Horizontal />
+        <div>Add to cart</div>
       </div>
     </div>
   );
