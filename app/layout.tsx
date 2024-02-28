@@ -19,6 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="%PUBLIC_URL%/saler.png" />
+      </head>
       <body className={`${poppins.className} text-[#FFFFFF]`}>
         <div className="flex flex-col min-h-screen">
           <NavBar />
