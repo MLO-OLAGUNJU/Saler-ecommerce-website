@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 
 type CartContextType = {
   cartTotalQty: number;
@@ -9,8 +9,9 @@ interface Props {
 }
 
 export const CartContext = createContext<CartContextType | null>(null);
+
 export const CartContextProvider = (props: Props) => {
-  const [cartTotalQty, setCartTotalQty] = React.useState();
+  const [cartTotalQty, setCartTotalQty] = useState(0);
 
   const value = {
     cartTotalQty,
