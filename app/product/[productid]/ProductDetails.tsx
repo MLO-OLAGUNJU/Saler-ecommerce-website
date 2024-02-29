@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/app/components/Button";
+import ProducImage from "@/app/components/products/ProducImage";
 import ReturnsandDelivery from "@/app/components/products/ReturnsandDelivery";
 import SetColor from "@/app/components/products/SetColor";
 import SetQauntity from "@/app/components/products/SetQauntity";
@@ -81,7 +82,11 @@ const ProductDetails: React.FC<ProducDetailsProps> = ({ product }) => {
   return (
     <main className="lg:flex block gap-4">
       <div className="grid lg:mb-0 mb-5 grid-cols-1 md:grid-cols-2 rounded-md gap-12 w-[100%] lg:w-[90%] bg-[#FFFFFF] p-5">
-        <div>Images</div>
+        <ProducImage
+          cartProduct={cartProduct}
+          product={product}
+          handleColorSelect={handleColorSelect}
+        />
         <div className="flex flex-col gap-2">
           <h2 className="mb-3 text-4xl font-medium">{product.name}</h2>
           <div className="flex items-center gap-2">
