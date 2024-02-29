@@ -6,6 +6,7 @@ import Link from "next/link";
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import Heading from "../components/Heading";
 import Button from "../components/Button";
+import ItemContent from "./ItemContent";
 
 const CartClient = () => {
   const { cartProducts } = useCart();
@@ -30,7 +31,7 @@ const CartClient = () => {
         className="bg-[#131921] w-fit p-2 my-5 rounded-lg h-fit flex items-center text-white gap-1"
       >
         <FaRegArrowAltCircleLeft />
-        <span className="">Continue Shopping</span>
+        <span className="text-sm">Continue Shopping</span>
       </Link>
       {/* </div> */}
 
@@ -44,7 +45,7 @@ const CartClient = () => {
       <div>
         {cartProducts &&
           cartProducts.map((item) => {
-            return <div key={item.id} />;
+            return <ItemContent key={item.id} item={item} />;
           })}
       </div>
 
