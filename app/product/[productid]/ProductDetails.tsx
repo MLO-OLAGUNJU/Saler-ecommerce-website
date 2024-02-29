@@ -5,6 +5,7 @@ import ProducImage from "@/app/components/products/ProducImage";
 import ReturnsandDelivery from "@/app/components/products/ReturnsandDelivery";
 import SetColor from "@/app/components/products/SetColor";
 import SetQauntity from "@/app/components/products/SetQauntity";
+import { useCart } from "@/app/hook/useCart";
 import { Rating } from "@mui/material";
 import React, { useCallback, useState } from "react";
 
@@ -34,6 +35,10 @@ export const Horizontal = () => {
 };
 
 const ProductDetails: React.FC<ProducDetailsProps> = ({ product }) => {
+  const { cartTotalQty } = useCart();
+
+  console.log(cartTotalQty);
+
   const [cartProduct, setCartProduct] = useState<CartProductType>({
     id: product.id,
     name: product.name,
