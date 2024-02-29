@@ -80,7 +80,7 @@ const ProductDetails: React.FC<ProducDetailsProps> = ({ product }) => {
 
   return (
     <main className="lg:flex block gap-4">
-      <div className="grid md:mb-0 mb-5 grid-cols-1 md:grid-cols-2 rounded-md gap-12 w-[100%] lg:w-[75%] bg-[#FFFFFF] p-5">
+      <div className="grid lg:mb-0 mb-5 grid-cols-1 md:grid-cols-2 rounded-md gap-12 w-[100%] lg:w-[90%] bg-[#FFFFFF] p-5">
         <div>Images</div>
         <div className="flex flex-col gap-2">
           <h2 className="mb-3 text-4xl font-medium">{product.name}</h2>

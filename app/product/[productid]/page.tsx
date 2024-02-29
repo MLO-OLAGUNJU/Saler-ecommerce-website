@@ -11,7 +11,7 @@ const Product = ({ params }: { params: IParams }) => {
   console.log("params", params);
 
   return (
-    <div className="text-[#0F1111] select-none p-8">
+    <div className="text-[#0F1111] select-none pt-8">
       <Container>
         <ProductDetails product={product} />
       </Container>
