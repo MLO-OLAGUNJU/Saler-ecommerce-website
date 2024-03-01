@@ -11,15 +11,17 @@ import ItemContent from "./ItemContent";
 const CartClient = () => {
   const { cartProducts } = useCart();
   if (!cartProducts || cartProducts.length === 0) {
-    <div className="flex flex-col items-center">
-      <div className=" text-2xl">Your cart is empty</div>
-      <div>
-        <Link href={"/"} className=" flex items-center gap-1 mt-2">
-          <FaRegArrowAltCircleLeft />
-          <span>Start Shopping</span>
-        </Link>
+    return (
+      <div className="flex flex-col items-center">
+        <div className=" text-2xl">Your cart is empty</div>
+        <div>
+          <Link href={"/"} className=" flex items-center gap-1 mt-2">
+            <FaRegArrowAltCircleLeft />
+            <span>Start Shopping</span>
+          </Link>
+        </div>
       </div>
-    </div>;
+    );
   }
   return (
     <div className="bg-[#E6E6E6]">

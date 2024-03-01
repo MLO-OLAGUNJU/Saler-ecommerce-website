@@ -6,11 +6,13 @@ import Link from "next/link";
 import truncateText from "@/utils/truncateText";
 import Image from "next/image";
 import SetQauntity from "../components/products/SetQauntity";
+import { useCart } from "../hook/useCart";
 
 interface ItemContentProps {
   item: CartProductType;
 }
 const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
+  const { handleRemoveProductFromCart } = useCart();
   return (
     <div className="grid grid-cols-5 text-xs md:text-sm gap-4 p-4 items-center bg-white">
       <div className=" col-span-2 justify-self-start flex gap-2 md:gap-4">
@@ -29,7 +31,7 @@ const ItemContent: React.FC<ItemContentProps> = ({ item }) => {
           <div>{item.selectedImg.color}</div>
           <div className="w-[70px]">
             <button
-              onClick={() => {}}
+              onClick={() => handleRemoveProductFromCart(item)}
               className="underline text-[#747474] hover:text-red-600"
             >
               Remove
