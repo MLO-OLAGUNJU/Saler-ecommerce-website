@@ -9,7 +9,7 @@ import Button from "../components/Button";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 
-const RegisterForm = () => {
+const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
@@ -19,7 +19,6 @@ const RegisterForm = () => {
     defaultValues: {
       email: "",
       password: "",
-      name: "",
     },
   });
 
@@ -30,11 +29,11 @@ const RegisterForm = () => {
 
   return (
     <>
-      <Heading title="Create An Account" />
+      <Heading title="Login your account" />
 
       <Button
         outline
-        label="Create with Google"
+        label="Continue with google"
         icon={FcGoogle}
         onClick={() => {}}
       />
@@ -83,4 +82,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default LoginForm;
