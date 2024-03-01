@@ -155,8 +155,13 @@ export const CartContextProvider = (props: Props) => {
   const handleClearCart = useCallback(() => {
     setCartProducts(null);
     setCartTotalQty(0);
+<<<<<<< HEAD
     toast.success("Your cart has been cleared successfully");
     localStorage.setItem("Salerbymlo", JSON.stringify(null));
+=======
+
+    localStorage.setItem("SalerCartItems", JSON.stringify(null));
+>>>>>>> df9f436bbe5c534c165dc9c71e1271c40e987bde
   }, [cartProducts]);
 
   const value = {

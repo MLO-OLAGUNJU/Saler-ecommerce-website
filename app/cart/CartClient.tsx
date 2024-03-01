@@ -37,6 +37,7 @@ const CartClient = () => {
       </Link>
       {/* </div> */}
 
+<<<<<<< HEAD
       <div className="lg:flex block gap-4">
         <div className="w-[100%] lg:w-[90%] bg-[#FFFFFF] p-5">
           <div className="grid grid-cols-5 text-xs gap-4  items-center bg-white p-5 font-semibold">
@@ -75,6 +76,37 @@ const CartClient = () => {
                 outline
               />
             </div>
+=======
+      <div className="grid grid-cols-5 text-xs gap-4  items-center bg-white p-5 font-semibold">
+        <div className="col-span-2 justify-self-start">PRODUCT</div>
+        <div className=" justify-self-center">PRICE</div>
+        <div className=" justify-self-center">QUANTITY</div>
+        <div className="justify-self-end">TOTAL</div>
+      </div>
+
+      <div>
+        {cartProducts &&
+          cartProducts.map((item) => {
+            return <ItemContent key={item.id} item={item} />;
+          })}
+      </div>
+
+      <div className=" border-t-[1.5px] p-4 bg-white flex justify-between gap-4">
+        <div className="w-[90px]">
+          <Button
+            label="Clear Cart"
+            onClick={() => {
+              handleClearCart();
+            }}
+            small
+            outline
+          />
+        </div>
+        <div className="text-sm flex flex-col gap-1 items-start">
+          <div className="flex justify-between w-full text-base font-semibold">
+            <span>Subtotal</span>
+            <span>$8,996</span>
+>>>>>>> df9f436bbe5c534c165dc9c71e1271c40e987bde
           </div>
         </div>
       </div>
