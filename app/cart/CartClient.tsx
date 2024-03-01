@@ -7,9 +7,10 @@ import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import Heading from "../components/Heading";
 import Button from "../components/Button";
 import ItemContent from "./ItemContent";
+import formatPrice from "@/utils/formatPrice";
 
 const CartClient = () => {
-  const { cartProducts, handleClearCart } = useCart();
+  const { cartProducts, handleClearCart, cartTotalAmount } = useCart();
   if (!cartProducts || cartProducts.length === 0) {
     return (
       <div className="flex flex-col items-center">
@@ -58,7 +59,7 @@ const CartClient = () => {
           <div className="text-sm flex flex-col gap-1 py-5">
             <div className="flex justify-between text-base font-semibold">
               <span>Subtotal</span>
-              <span>$8,996</span>
+              <span>{formatPrice(cartTotalAmount)}</span>
             </div>
             <p className=" text-red-600 my-3">
               Taxes and shipping calculated at checkout

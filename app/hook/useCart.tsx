@@ -37,7 +37,7 @@ export const CartContextProvider = (props: Props) => {
   console.log("amount", cartTotalAmount);
 
   useEffect(() => {
-    const cartItems: any = localStorage.getItem("Salerbymlo");
+    const cartItems: any = localStorage.getItem("SalerProductType");
     const cProducts: CartProductType[] | null = JSON.parse(cartItems);
 
     setCartProducts(cProducts);
@@ -77,7 +77,7 @@ export const CartContextProvider = (props: Props) => {
       }
 
       toast.success("You have successfully added a new product from your cart");
-      localStorage.setItem("Salerbymlo", JSON.stringify(updatedCart));
+      localStorage.setItem("SalerProductType", JSON.stringify(updatedCart));
       return updatedCart;
     });
   }, []);
@@ -92,7 +92,10 @@ export const CartContextProvider = (props: Props) => {
 
         setCartProducts(filteredProducts);
         toast.success("You have successfully removed a product from your cart");
-        localStorage.setItem("Salerbymlo", JSON.stringify(filteredProducts));
+        localStorage.setItem(
+          "SalerProductType",
+          JSON.stringify(filteredProducts)
+        );
       }
     },
     [cartProducts]
@@ -119,7 +122,7 @@ export const CartContextProvider = (props: Props) => {
             .qauntity;
         }
         setCartProducts(updatedCart);
-        localStorage.setItem("Salerbymlo", JSON.stringify(updatedCart));
+        localStorage.setItem("SalerProductType", JSON.stringify(updatedCart));
       }
     },
     [cartProducts]
@@ -146,7 +149,7 @@ export const CartContextProvider = (props: Props) => {
             .qauntity;
         }
         setCartProducts(updatedCart);
-        localStorage.setItem("Salerbymlo", JSON.stringify(updatedCart));
+        localStorage.setItem("SalerProductType", JSON.stringify(updatedCart));
       }
     },
     [cartProducts]
@@ -156,7 +159,7 @@ export const CartContextProvider = (props: Props) => {
     setCartProducts(null);
     setCartTotalQty(0);
     toast.success("Your cart has been cleared successfully");
-    localStorage.setItem("Salerbymlo", JSON.stringify(null));
+    localStorage.setItem("SalerProductType", JSON.stringify(null));
   }, [cartProducts]);
 
   const value = {
