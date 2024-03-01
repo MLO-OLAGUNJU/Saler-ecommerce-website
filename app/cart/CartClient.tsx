@@ -8,6 +8,7 @@ import Heading from "../components/Heading";
 import Button from "../components/Button";
 import ItemContent from "./ItemContent";
 import formatPrice from "@/utils/formatPrice";
+import { RiSecurePaymentLine } from "react-icons/ri";
 
 const CartClient = () => {
   const { cartProducts, handleClearCart, cartTotalAmount } = useCart();
@@ -61,9 +62,27 @@ const CartClient = () => {
               <span>Subtotal</span>
               <span>{formatPrice(cartTotalAmount)}</span>
             </div>
-            <p className=" text-red-600 my-3">
-              Taxes and shipping calculated at checkout
-            </p>
+            <div className="flex gap-2 items-center">
+              <span>We accept:</span>
+              <img
+                src="./mastercard.png"
+                className="w-[30px]"
+                alt="mastercard"
+              />
+              <img src="./visa.png" className="w-[30px]" alt="mastercard" />
+              <img
+                src="./banktransfer.png"
+                className="w-[30px]"
+                alt="mastercard"
+              />
+            </div>
+
+            <div className=" text-[12px] flex items-center gap-1">
+              <RiSecurePaymentLine className="text-[#F89F24] text-[25px]" />
+              <p className="text-[#878282] w-[250px]">
+                Transactions are 100% Safe and Secure
+              </p>
+            </div>
             <Button label="Continue to Checkout" onClick={() => {}} />
 
             <div className="w-[90px] my-5">
