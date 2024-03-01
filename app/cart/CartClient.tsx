@@ -23,7 +23,7 @@ const CartClient = () => {
   }
   return (
     <div className="bg-[#E6E6E6]">
-      <Heading title="Shopping Cart" center />
+      <Heading title="Shopping Cart" />
 
       {/* <div className="bg-[#F89F24] w-fit p-4 my-5 rounded-lg h-fit"> */}
       <Link
@@ -31,7 +31,7 @@ const CartClient = () => {
         className="bg-[#131921] w-fit p-2 my-5 rounded-lg h-fit flex items-center text-white gap-1"
       >
         <FaRegArrowAltCircleLeft />
-        <span className="text-sm">Continue Shopping</span>
+        <span className="text-[12px]">Continue Shopping</span>
       </Link>
       {/* </div> */}
 

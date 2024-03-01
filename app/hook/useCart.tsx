@@ -8,11 +8,13 @@ import React, {
 import { CartProductType } from "../product/[productid]/ProductDetails";
 
 import { toast } from "react-hot-toast";
+import { product } from "@/utils/product";
 
 type CartContextType = {
   cartTotalQty: number;
   cartProducts: CartProductType[] | null;
   handleAddProductToCart: (product: CartProductType) => void;
+  handleRemoveProductFromCart: (product: CartProductType) => void;
 };
 
 interface Props {
@@ -49,10 +51,23 @@ export const CartContextProvider = (props: Props) => {
       return updatedCart;
     });
   }, []);
+
+  const handleRemoveProductFromCart = useCallback(() => {
+    product: cartProducts;
+    if (cartProducts) {
+      const filteredProducts = cartProducts.filter((item) => {
+        return item.id !== product.id;
+      });
+      setCartProducts(filteredProducts);
+      toast.success("Product successfully removed from cart");
+      localStorage.setItem("SalerCartItems", JSON.stringify(filteredProducts));
+    }
+  }, [cartProducts]);
   const value = {
     cartTotalQty,
     cartProducts,
     handleAddProductToCart,
+    handleRemoveProductFromCart,
   };
 
   return <CartContext.Provider value={value} {...props} />;
