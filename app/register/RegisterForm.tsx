@@ -34,7 +34,7 @@ const RegisterForm = () => {
 
       <Button
         outline
-        label="Create with Google"
+        label="Continue with Google"
         icon={FcGoogle}
         onClick={() => {}}
       />

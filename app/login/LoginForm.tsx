@@ -8,6 +8,7 @@ import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
 import Button from "../components/Button";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
+import toast from "react-hot-toast";
 
 const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -33,20 +34,11 @@ const LoginForm = () => {
 
       <Button
         outline
-        label="Continue with google"
+        label="Login with google"
         icon={FcGoogle}
         onClick={() => {}}
       />
       <Horizontal />
-      <Input
-        id="name"
-        label="Name"
-        disabled={isLoading}
-        register={register}
-        errors={errors}
-        required
-        autoFocus={true}
-      />
       <Input
         id="email"
         label="Email Address"
@@ -68,14 +60,14 @@ const LoginForm = () => {
       />
 
       <Button
-        label={isLoading ? "Creating your account...." : "Create account"}
+        label={isLoading ? "Creating your account...." : "Login"}
         onClick={handleSubmit(onSubmit)}
       />
 
       <p className="flex items-center gap-2">
-        Already have an Account?
-        <Link href={"/login"} className="font-semibold">
-          Login Here!
+        Don't have an Account?
+        <Link href={"/register"} className="font-semibold">
+          Create an account Here!
         </Link>
       </p>
     </>

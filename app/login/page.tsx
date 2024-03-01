@@ -5,11 +5,13 @@ import LoginForm from "./LoginForm";
 
 const page = () => {
   return (
-    <Container>
-      <FormWrap>
-        <LoginForm />
-      </FormWrap>
-    </Container>
+    <div className="text-[#0F1111] bg-white select-none">
+      <Container>
+        <FormWrap>
+          <LoginForm />
+        </FormWrap>
+      </Container>
+    </div>
   );
 };
 
