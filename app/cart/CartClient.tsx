@@ -56,7 +56,7 @@ const CartClient = () => {
           </div>
         </div>
 
-        <div className=" p-4 bg-white flex flex-col justify-between gap-4 h-fit lg:mt-0 mt-5">
+        <div className=" p-4 pb-0 bg-white flex flex-col justify-between gap-4 h-fit lg:mt-0 mt-5">
           <div className="text-sm flex flex-col gap-1 py-5">
             <div className="flex justify-between text-base font-semibold">
               <span>Subtotal</span>
@@ -85,7 +85,7 @@ const CartClient = () => {
             </div>
             <Button label="Continue to Checkout" onClick={() => {}} />
 
-            <div className="w-[90px] my-5">
+            <div className="w-[90px] mt-5">
               <Button
                 label="Clear Cart"
                 onClick={() => {
