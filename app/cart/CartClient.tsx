@@ -9,7 +9,7 @@ import Button from "../components/Button";
 import ItemContent from "./ItemContent";
 
 const CartClient = () => {
-  const { cartProducts } = useCart();
+  const { cartProducts, handleClearCart } = useCart();
   if (!cartProducts || cartProducts.length === 0) {
     return (
       <div className="flex flex-col items-center">
@@ -66,7 +66,14 @@ const CartClient = () => {
             <Button label="Continue to Checkout" onClick={() => {}} />
 
             <div className="w-[90px] my-5">
-              <Button label="Clear Cart" onClick={() => {}} small outline />
+              <Button
+                label="Clear Cart"
+                onClick={() => {
+                  handleClearCart();
+                }}
+                small
+                outline
+              />
             </div>
           </div>
         </div>
