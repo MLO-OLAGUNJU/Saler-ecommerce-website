@@ -39,6 +39,40 @@ model User {
     accounts       Account[]
 }
 
+model Order{
+    id               String     @id @default(auto()) @map("_id") @db.ObjectId
+    userId           String     @db.ObjectId
+    amount           Float
+    currency         String
+    status           String
+    deliveryStatus   String?
+    createdDate      DateTime   @default(now())
+    paymentIntentId  String     @unique
+    products         cartProductType[]
+    address          Address?
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+}
+
+type CartProductType {
+  id                    String
+  name                  String
+  description           String
+  category              String
+  brand                 String
+  selectedImg           Image
+  qauntity              Int
+  price                 Float
+}
+
+type Image{
+    color           String
+    colorCode       String
+    image           String
+}
+
+
 enum Role {
     USER
     ADMIN
