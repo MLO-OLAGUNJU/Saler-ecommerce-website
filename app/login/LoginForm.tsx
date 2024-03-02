@@ -9,9 +9,16 @@ import Button from "../components/Button";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
+import { signIn } from "next-auth/react";
+import { FaS } from "react-icons/fa6";
+import { useRouter } from "next/navigation";
+import { useCart } from "../hook/useCart";
 
 const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const { handlesetIsLoggedIn, isLoggedIn } = useCart();
+
   const {
     register,
     handleSubmit,
@@ -25,7 +32,22 @@ const LoginForm = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-    console.log(data);
+    signIn("credentials", {
+      ...data,
+      redirect: false,
+    }).then((callback) => {
+      setIsLoading(false);
+      if (callback?.ok) {
+        router.push("/cart");
+        router.refresh();
+        toast.success("Logged In");
+        handlesetIsLoggedIn();
+      }
+
+      if (callback?.error) {
+        toast.error(callback.error);
+      }
+    });
   };
 
   return (

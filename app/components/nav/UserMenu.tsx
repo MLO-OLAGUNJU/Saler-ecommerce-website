@@ -7,9 +7,11 @@ import Link from "next/link";
 import MenuItems from "./MenuItems";
 import { signOut } from "next-auth/react";
 import BkDrop from "./BkDrop";
+import { useCart } from "@/app/hook/useCart";
 
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { handlesetIsLoggedIn, isLoggedIn } = useCart();
   const toggleOpen = useCallback(() => {
     setIsOpen((prev) => !prev);
   }, []);
@@ -33,23 +35,28 @@ const UserMenu = () => {
               <Link href={"/admin"}>
                 <MenuItems onClick={toggleOpen}>Admin Dashboard</MenuItems>
               </Link>
-              <MenuItems
-                onClick={() => {
-                  toggleOpen();
-                  signOut;
-                }}
-              >
-                Log out
-              </MenuItems>
+              {isLoggedIn && (
+                <MenuItems
+                  onClick={() => {
+                    toggleOpen();
+                    handlesetIsLoggedIn();
+                    signOut;
+                  }}
+                >
+                  Log out
+                </MenuItems>
+              )}
             </div>
-            <div>
-              <Link href={"/login"}>
-                <MenuItems onClick={toggleOpen}>Log in</MenuItems>
-              </Link>
-              <Link href={"/register"}>
-                <MenuItems onClick={toggleOpen}>Create an account</MenuItems>
-              </Link>
-            </div>
+            {!isLoggedIn && (
+              <div>
+                <Link href={"/login"}>
+                  <MenuItems onClick={toggleOpen}>Log in</MenuItems>
+                </Link>
+                <Link href={"/register"}>
+                  <MenuItems onClick={toggleOpen}>Create an account</MenuItems>
+                </Link>
+              </div>
+            )}
           </div>
         )}
       </div>

@@ -12,11 +12,13 @@ import { CartProductType } from "../product/[productId]/ProductDetails";
 type CartContextType = {
   cartTotalAmount: number;
   cartTotalQty: number;
+  isLoggedIn: boolean;
   cartProducts: CartProductType[] | null;
   handleAddProductToCart: (product: CartProductType) => void;
   handleRemoveProductFromCart: (product: CartProductType) => void;
   handleCartQtyIncrease: (product: CartProductType) => void;
   handleCartQtyDecrease: (product: CartProductType) => void;
+  handlesetIsLoggedIn: () => void;
   handleClearCart: () => void;
 };
 
@@ -29,6 +31,8 @@ interface Props {
 export const CartContextProvider = (props: Props) => {
   const [cartTotalQty, setCartTotalQty] = useState(0);
   const [cartTotalAmount, setCartTotalAmount] = useState(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // Initially false
+
   const [cartProducts, setCartProducts] = useState<CartProductType[] | null>(
     null
   );
@@ -66,6 +70,14 @@ export const CartContextProvider = (props: Props) => {
     };
     getTotals();
   }, [cartProducts]);
+
+  const handlesetIsLoggedIn = () => {
+    if (isLoggedIn === false) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  };
 
   const handleAddProductToCart = useCallback((product: CartProductType) => {
     setCartProducts((prev) => {
@@ -171,6 +183,8 @@ export const CartContextProvider = (props: Props) => {
     handleCartQtyIncrease,
     handleCartQtyDecrease,
     handleClearCart,
+    handlesetIsLoggedIn,
+    isLoggedIn,
   };
 
   return <CartContext.Provider value={value} {...props} />;
