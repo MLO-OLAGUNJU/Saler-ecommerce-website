@@ -35,28 +35,28 @@ const UserMenu = () => {
               <Link href={"/admin"}>
                 <MenuItems onClick={toggleOpen}>Admin Dashboard</MenuItems>
               </Link>
-              {isLoggedIn && (
-                <MenuItems
-                  onClick={() => {
-                    toggleOpen();
-                    handlesetIsLoggedIn();
-                    signOut;
-                  }}
-                >
-                  Log out
-                </MenuItems>
-              )}
+              {/* {isLoggedIn && ( */}
+              <MenuItems
+                onClick={() => {
+                  toggleOpen();
+                  handlesetIsLoggedIn();
+                  signOut();
+                }}
+              >
+                Log out
+              </MenuItems>
+              {/* )} */}
             </div>
-            {!isLoggedIn && (
-              <div>
-                <Link href={"/login"}>
-                  <MenuItems onClick={toggleOpen}>Log in</MenuItems>
-                </Link>
-                <Link href={"/register"}>
-                  <MenuItems onClick={toggleOpen}>Create an account</MenuItems>
-                </Link>
-              </div>
-            )}
+            {/* {!isLoggedIn && ( */}
+            <div>
+              <Link href={"/login"}>
+                <MenuItems onClick={toggleOpen}>Log in</MenuItems>
+              </Link>
+              <Link href={"/register"}>
+                <MenuItems onClick={toggleOpen}>Create an account</MenuItems>
+              </Link>
+            </div>
+            {/* )} */}
           </div>
         )}
       </div>
