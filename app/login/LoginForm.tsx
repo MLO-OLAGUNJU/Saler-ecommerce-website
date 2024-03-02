@@ -10,7 +10,6 @@ import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
-import { FaS } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
 import { useCart } from "../hook/useCart";
 import { SafeUser } from "@/types";
