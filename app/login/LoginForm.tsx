@@ -63,7 +63,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
 
   if (currentUser) {
     return (
-      <p className="text-center">You are already logged in. Redirecting....</p>
+      <p className="text-center">You are already signed in. Redirecting....</p>
     );
   }
 
