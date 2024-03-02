@@ -82,7 +82,7 @@ const LoginForm = () => {
       />
 
       <Button
-        label={isLoading ? "Creating your account...." : "Login"}
+        label={isLoading ? "Connecting...." : "Login"}
         onClick={handleSubmit(onSubmit)}
       />
 
