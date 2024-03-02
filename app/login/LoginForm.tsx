@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Heading from "../components/Heading";
 import { Horizontal } from "../product/[productId]/ProductDetails";
 import Input from "../components/inputs/Input";
@@ -13,8 +13,13 @@ import { signIn } from "next-auth/react";
 import { FaS } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
 import { useCart } from "../hook/useCart";
+import { SafeUser } from "@/types";
 
-const LoginForm = () => {
+interface LoginFormProps {
+  currentUser: SafeUser | null;
+}
+
+const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { handlesetIsLoggedIn, isLoggedIn } = useCart();
@@ -29,6 +34,13 @@ const LoginForm = () => {
       password: "",
     },
   });
+
+  useEffect(() => {
+    if (currentUser) {
+      router.push("/cart");
+      router.refresh();
+    }
+  }, []);
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
@@ -49,6 +61,12 @@ const LoginForm = () => {
       }
     });
   };
+
+  if (currentUser) {
+    return (
+      <p className="text-center">You are already logged in. Redirecting....</p>
+    );
+  }
 
   return (
     <>
