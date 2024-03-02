@@ -9,12 +9,13 @@ import { signOut } from "next-auth/react";
 import BkDrop from "./BkDrop";
 import { useCart } from "@/app/hook/useCart";
 import { SafeUser } from "@/types";
+import { User } from "@prisma/client";
 
-interface userMenuProps {
+interface UserMenuProps {
   currentUser: SafeUser;
 }
 
-const UserMenu: React.FC<userMenuProps> = ({ currentUser }) => {
+const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { handlesetIsLoggedIn, isLoggedIn } = useCart();
   const toggleOpen = useCallback(() => {
