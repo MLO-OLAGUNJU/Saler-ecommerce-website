@@ -75,7 +75,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
         outline
         label="Login with google"
         icon={FcGoogle}
-        onClick={() => {}}
+        onClick={() => {
+          signIn("google");
+        }}
       />
       <Horizontal />
       <Input
@@ -99,7 +101,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
       />
 
       <Button
-        label={isLoading ? "Connecting...." : "Login"}
+        label={isLoading ? "Logging you in...." : "Login"}
         onClick={handleSubmit(onSubmit)}
       />
 

@@ -10,6 +10,7 @@ import BkDrop from "./BkDrop";
 import { useCart } from "@/app/hook/useCart";
 import { SafeUser } from "@/types";
 import { User } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
   currentUser: SafeUser;
@@ -29,7 +30,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           className="flex flex-row items-center justify-center px-4 p-3 gap-1 hover:shadow-md transition"
           onClick={toggleOpen}
         >
-          <Avatar />
+          {currentUser && <p>Hi, {currentUser?.name}</p>}
+          <Avatar src={currentUser?.image} />
           <FaCaretDown className="text-[#fff]" />
         </div>
         {isOpen && (
