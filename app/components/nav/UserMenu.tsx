@@ -9,8 +9,6 @@ import { signOut } from "next-auth/react";
 import BkDrop from "./BkDrop";
 import { useCart } from "@/app/hook/useCart";
 import { SafeUser } from "@/types";
-import { User } from "@prisma/client";
-import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
   currentUser: SafeUser;
