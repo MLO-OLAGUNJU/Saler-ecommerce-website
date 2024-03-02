@@ -37,9 +37,6 @@ export const CartContextProvider = (props: Props) => {
     null
   );
 
-  console.log("qty", cartTotalQty);
-  console.log("amount", cartTotalAmount);
-
   useEffect(() => {
     const cartItems: any = localStorage.getItem("SalerProductType");
     const cProducts: CartProductType[] | null = JSON.parse(cartItems);

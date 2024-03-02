@@ -10,8 +10,6 @@ interface IPrams {
 }
 
 const Product = ({ params }: { params: IPrams }) => {
-  console.log("params", params);
-
   const product = products.find((item) => item.id === params.productId);
 
   return (
