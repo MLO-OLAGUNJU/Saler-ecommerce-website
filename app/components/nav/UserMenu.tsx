@@ -8,7 +8,6 @@ import MenuItems from "./MenuItems";
 import { signOut } from "next-auth/react";
 import BkDrop from "./BkDrop";
 import { useCart } from "@/app/hook/useCart";
-import { User } from "@prisma/client";
 import { SafeUser } from "@/types";
 
 interface userMenuProps {
@@ -47,7 +46,6 @@ const UserMenu: React.FC<userMenuProps> = ({ currentUser }) => {
                 <MenuItems
                   onClick={() => {
                     toggleOpen();
-                    handlesetIsLoggedIn();
                     signOut();
                   }}
                 >
