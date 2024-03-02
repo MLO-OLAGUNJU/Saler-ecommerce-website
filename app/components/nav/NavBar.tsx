@@ -4,10 +4,13 @@ import Link from "next/link";
 import { Shadows_Into_Light } from "next/font/google";
 import CartCount from "./CartCount";
 import UserMenu from "./UserMenu";
+import { getCurrentUser } from "@/actions/getCurrentUser";
 
 const redressed = Shadows_Into_Light({ subsets: ["latin"], weight: ["400"] });
 
-const NavBar = () => {
+const NavBar = async () => {
+  const currentUser = await getCurrentUser();
+
   return (
     <div className="sticky top-0 w-full bg-[#131921] select-none z-30 shadow-sm">
       <div className="py-4 border-b-[1px]">
@@ -22,7 +25,7 @@ const NavBar = () => {
             <div className="hidden md:block">Search</div>
             <div className="flex items-center gap-8 md:gap-12">
               <CartCount />
-              <UserMenu />
+              <UserMenu currentUser={currentUser} />
             </div>
           </div>
         </Container>
