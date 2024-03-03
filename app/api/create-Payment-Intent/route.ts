@@ -39,6 +39,13 @@ export async function POST(request: Request) {
   };
 
   if (payment_intent_id) {
+    const current_intent = await stripe.paymentIntents.retrieve(
+      payment_intent_id
+
+      if(current_intent){
+        const updated_intent = await stripe.paymentIntents.update(payment_intent_id)
+      }
+    );
     //update the order
   } else {
     //create the payment intent
