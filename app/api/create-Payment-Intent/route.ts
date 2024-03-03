@@ -50,26 +50,27 @@ export async function POST(request: Request) {
         payment_intent_id,
         { amount: total }
       );
-    }
-    //update the order
-    const [existing_order, update_order] = await Promise.all([
-      prisma.order.findFirst({
-        where: { paymentIntentId: payment_intent_id },
-      }),
-      prisma.order.update({
-        where: { paymentIntentId: payment_intent_id },
-        data: {
-          amount: total,
-          products: items,
-        },
-      }),
-    ]);
+      //update the order
+      const [existing_order, update_order] = await Promise.all([
+        prisma.order.findFirst({
+          where: { paymentIntentId: payment_intent_id },
+        }),
+        prisma.order.update({
+          where: { paymentIntentId: payment_intent_id },
+          data: {
+            amount: total,
+            products: items,
+          },
+        }),
+      ]);
 
-    if (!existing_order) {
-      return NextResponse.json(
-        { error: "Invalid Payment Intent" },
-        { status: 400 }
-      );
+      if (!existing_order) {
+        return NextResponse.json(
+          { error: "Invalid Payment Intent" },
+          { status: 400 }
+        );
+      }
+      return NextResponse.json({ paymentIntent: updated_intent });
     }
   } else {
     //create the payment intent
