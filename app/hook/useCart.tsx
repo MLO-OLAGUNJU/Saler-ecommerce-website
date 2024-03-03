@@ -20,6 +20,8 @@ type CartContextType = {
   handleCartQtyDecrease: (product: CartProductType) => void;
   handlesetIsLoggedIn: () => void;
   handleClearCart: () => void;
+  paymentIntent: string | null;
+  handleSetPaymentIntent: (val: string | null) => void;
 };
 
 export const CartContext = createContext<CartContextType | null>(null);
@@ -37,11 +39,17 @@ export const CartContextProvider = (props: Props) => {
     null
   );
 
+  const [paymentIntent, setPaymentIntent] = useState<string | null>(null);
+
   useEffect(() => {
     const cartItems: any = localStorage.getItem("SalerProductType");
     const cProducts: CartProductType[] | null = JSON.parse(cartItems);
 
+    const SalerPaymentIntent: any = localStorage.getItem("SalerPaymentIntent");
+    const paymentIntent: string | null = JSON.parse(SalerPaymentIntent);
+
     setCartProducts(cProducts);
+    setPaymentIntent(paymentIntent);
   }, []);
 
   useEffect(() => {
@@ -171,6 +179,14 @@ export const CartContextProvider = (props: Props) => {
     localStorage.setItem("SalerProductType", JSON.stringify(null));
   }, [cartProducts]);
 
+  const handleSetPaymentIntent = useCallback(
+    (val: string | null) => {
+      setPaymentIntent(val);
+      localStorage.setItem("SalerPayementIntent", JSON.stringify(val));
+    },
+    [paymentIntent]
+  );
+
   const value = {
     cartTotalQty,
     cartTotalAmount,
@@ -182,6 +198,8 @@ export const CartContextProvider = (props: Props) => {
     handleClearCart,
     handlesetIsLoggedIn,
     isLoggedIn,
+    paymentIntent,
+    handleSetPaymentIntent,
   };
 
   return <CartContext.Provider value={value} {...props} />;
