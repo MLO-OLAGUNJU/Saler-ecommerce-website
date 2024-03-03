@@ -3,6 +3,8 @@ import prisma from "@/libs/prismadb";
 import { NextResponse } from "next/server";
 import { CartProductType } from "@/app/product/[productId]/ProductDetails";
 import { getCurrentUser } from "@/actions/getCurrentUser";
+import toast from "react-hot-toast";
+import { products } from "@/utils/products";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: "2023-10-16",
@@ -41,12 +43,34 @@ export async function POST(request: Request) {
   if (payment_intent_id) {
     const current_intent = await stripe.paymentIntents.retrieve(
       payment_intent_id
-
-      if(current_intent){
-        const updated_intent = await stripe.paymentIntents.update(payment_intent_id)
-      }
     );
+
+    if (current_intent) {
+      const updated_intent = await stripe.paymentIntents.update(
+        payment_intent_id,
+        { amount: total }
+      );
+    }
     //update the order
+    const [existing_order, update_order] = await Promise.all([
+      prisma.order.findFirst({
+        where: { paymentIntentId: payment_intent_id },
+      }),
+      prisma.order.update({
+        where: { paymentIntentId: payment_intent_id },
+        data: {
+          amount: total,
+          products: items,
+        },
+      }),
+    ]);
+
+    if (!existing_order) {
+      return NextResponse.json(
+        { error: "Invalid Payment Intent" },
+        { status: 400 }
+      );
+    }
   } else {
     //create the payment intent
     const paymentIntent = await stripe.paymentIntents.create({
