@@ -3,7 +3,7 @@
 import {
   CartProductType,
   SelectedImgType,
-} from "@/app/product/[productid]/ProductDetails";
+} from "@/app/product/[productId]/ProductDetails";
 import Image from "next/image";
 import React from "react";
 

@@ -1,9 +1,9 @@
 import Container from "@/app/components/Container";
 import { product } from "@/utils/product";
 import React from "react";
-import ListRating from "./ListRating";
-import ProductDetails from "./ProductDetails";
 import { products } from "@/utils/products";
+import ProductDetails from "./ProductDetails";
+import ListRating from "./ListRating";
 
 interface IPrams {
   productId?: string;

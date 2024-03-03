@@ -2,7 +2,7 @@ import React from "react";
 import { TbTruckDelivery } from "react-icons/tb";
 import { RiRefund2Fill } from "react-icons/ri";
 import { RiShieldStarFill } from "react-icons/ri";
-import { Horizontal } from "@/app/product/[productid]/ProductDetails";
+import { Horizontal } from "@/app/product/[productId]/ProductDetails";
 
 const ReturnsandDelivery = () => {
   return (

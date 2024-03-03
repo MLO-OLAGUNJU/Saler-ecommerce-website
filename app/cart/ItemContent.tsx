@@ -1,7 +1,7 @@
 "use client";
 
 import formatPrice from "@/utils/formatPrice";
-import { CartProductType } from "../product/[productid]/ProductDetails";
+import { CartProductType } from "../product/[productId]/ProductDetails";
 import Link from "next/link";
 import truncateText from "@/utils/truncateText";
 import Image from "next/image";
