@@ -182,7 +182,7 @@ export const CartContextProvider = (props: Props) => {
   const handleSetPaymentIntent = useCallback(
     (val: string | null) => {
       setPaymentIntent(val);
-      localStorage.setItem("SalerPayementIntent", JSON.stringify(val));
+      localStorage.setItem("SalerPaymentIntent", JSON.stringify(val));
     },
     [paymentIntent]
   );
