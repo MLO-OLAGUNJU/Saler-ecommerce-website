@@ -20,6 +20,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const toggleOpen = useCallback(() => {
     setIsOpen((prev) => !prev);
   }, []);
+  const fullName = currentUser.name;
+  const firstName = fullName?.split(" ")[0];
 
   return (
     <>
@@ -28,7 +30,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           className="flex flex-row items-center justify-center px-4 p-3 gap-1 hover:shadow-md transition"
           onClick={toggleOpen}
         >
-          {currentUser && <p>Hi, {currentUser?.name}</p>}
+          {currentUser && <p>Hi, {firstName}</p>}
           <Avatar src={currentUser?.image} />
           <FaCaretDown className="text-[#fff]" />
         </div>
