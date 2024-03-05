@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     amount: total,
     currency: "usd",
     status: "pending",
-    deliveryStatusId: "pending",
+    deliveryStatus: "pending",
     paymentIntentId: payment_intent_id,
     products: items,
   };

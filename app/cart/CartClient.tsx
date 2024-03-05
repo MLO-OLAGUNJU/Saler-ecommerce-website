@@ -44,7 +44,7 @@ const CartClient = () => {
           <div className="grid grid-cols-5 text-xs gap-4  items-center bg-white p-5 font-semibold">
             <div className="col-span-2 justify-self-start">PRODUCT</div>
             <div className=" justify-self-center">PRICE</div>
-            <div className=" justify-self-center">QUANTITY</div>
+            <div className=" justify-self-center">qauntity</div>
             <div className="justify-self-end">TOTAL</div>
           </div>
 
