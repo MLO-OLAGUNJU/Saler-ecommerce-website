@@ -41,10 +41,10 @@ export const CartContextProvider = (props: Props) => {
   const [paymentIntent, setPaymentIntent] = useState<string | null>(null);
 
   useEffect(() => {
-    const cartItems: any = localStorage.getItem("SalerProductType");
+    const cartItems: any = localStorage.getItem("salerCartItems");
     const cProducts: CartProductType[] | null = JSON.parse(cartItems);
     const SalerPaymentIntent: any = localStorage.getItem("SalerPaymentIntent");
-    // const paymentIntent: string | null = JSON.parse(SalerPaymentIntent);
+    const paymentIntent: string | null = JSON.parse(SalerPaymentIntent);
 
     setCartProducts(cProducts);
     setPaymentIntent(paymentIntent);
@@ -92,7 +92,7 @@ export const CartContextProvider = (props: Props) => {
       }
 
       toast.success("You have successfully added a new product from your cart");
-      localStorage.setItem("SalerProductType", JSON.stringify(updatedCart));
+      localStorage.setItem("salerCartItems", JSON.stringify(updatedCart));
       return updatedCart;
     });
   }, []);
@@ -108,7 +108,7 @@ export const CartContextProvider = (props: Props) => {
         setCartProducts(filteredProducts);
         toast.success("You have successfully removed a product from your cart");
         localStorage.setItem(
-          "SalerProductType",
+          "salerCartItems",
           JSON.stringify(filteredProducts)
         );
       }
@@ -135,7 +135,7 @@ export const CartContextProvider = (props: Props) => {
             .qauntity;
         }
         setCartProducts(updatedCart);
-        localStorage.setItem("SalerProductType", JSON.stringify(updatedCart));
+        localStorage.setItem("salerCartItems", JSON.stringify(updatedCart));
       }
     },
     [cartProducts]
@@ -160,7 +160,7 @@ export const CartContextProvider = (props: Props) => {
             .qauntity;
         }
         setCartProducts(updatedCart);
-        localStorage.setItem("SalerProductType", JSON.stringify(updatedCart));
+        localStorage.setItem("salerCartItems", JSON.stringify(updatedCart));
       }
     },
     [cartProducts]
@@ -170,7 +170,7 @@ export const CartContextProvider = (props: Props) => {
     setCartProducts(null);
     setCartTotalQty(0);
     toast.success("Your cart has been cleared successfully");
-    localStorage.setItem("SalerProductType", JSON.stringify(null));
+    localStorage.setItem("salerCartItems", JSON.stringify(null));
   }, [cartProducts]);
 
   const handleSetPaymentIntent = useCallback(

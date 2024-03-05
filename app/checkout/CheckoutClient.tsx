@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Router } from "next/router";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useCart } from "../hook/useCart";
@@ -40,7 +39,7 @@ const CheckoutClient = () => {
         .catch((error) => {
           setError(true);
           console.log("Error", error);
-          // toast.error("something went wrong");
+          toast.error("something went wrong");
         });
     }
   }, [cartProducts, paymentIntent]);

@@ -20,7 +20,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const toggleOpen = useCallback(() => {
     setIsOpen((prev) => !prev);
   }, []);
-  const fullName = currentUser.name;
+  const fullName = currentUser?.name;
   const firstName = fullName?.split(" ")[0];
 
   return (
