@@ -1,9 +1,14 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useCart } from "../hook/useCart";
-import { useElements, useStripe } from "@stripe/react-stripe-js";
+import {
+  PaymentElement,
+  useElements,
+  useStripe,
+} from "@stripe/react-stripe-js";
 import formatPrice from "@/utils/formatPrice";
 import toast from "react-hot-toast";
+import Heading from "../components/Heading";
 
 interface CheckOutFormProps {
   clientSecret: string;
@@ -52,12 +57,20 @@ const CheckOutForm: React.FC<CheckOutFormProps> = ({
           handlesetPaymentSuccess(true);
           handleSetPaymentIntent(null);
         }
+
+        setLoading(false);
       });
   };
 
   return (
     <>
-      <div>CheckOutForm</div>
+      <form onSubmit={handleSubmit} id="payment-form">
+        <div className="mb-6 ">
+          <Heading title="Enter your details to complete checkout" />
+          <h2 className=" font-semibold mt-4 mb-2">Payment Information</h2>
+          <PaymentElement />
+        </div>
+      </form>
     </>
   );
 };
