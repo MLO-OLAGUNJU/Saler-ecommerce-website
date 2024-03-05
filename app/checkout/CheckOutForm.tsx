@@ -1,8 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCart } from "../hook/useCart";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
 import formatPrice from "@/utils/formatPrice";
+import toast from "react-hot-toast";
 
 interface CheckOutFormProps {
   clientSecret: string;
@@ -18,6 +19,42 @@ const CheckOutForm: React.FC<CheckOutFormProps> = ({
   const elements = useElements();
   const [loading, setLoading] = useState(false);
   const formattedPrice = formatPrice(cartTotalAmount);
+
+  useEffect(() => {
+    if (!stripe) {
+      return;
+    }
+    if (!clientSecret) {
+      return;
+    }
+    handlesetPaymentSuccess(false);
+  }, [stripe]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!stripe || !elements) {
+      return;
+    }
+
+    setLoading(true);
+
+    stripe
+      .confirmPayment({
+        elements,
+        redirect: "if_required",
+      })
+      .then((result) => {
+        if (!result.error) {
+          toast.success("Chekout Success");
+
+          handleClearCart();
+          handlesetPaymentSuccess(true);
+          handleSetPaymentIntent(null);
+        }
+      });
+  };
+
   return (
     <>
       <div>CheckOutForm</div>
