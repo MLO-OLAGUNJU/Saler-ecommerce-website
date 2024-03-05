@@ -5,6 +5,9 @@ import toast from "react-hot-toast";
 import { useCart } from "../hook/useCart";
 import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import CheckOutForm from "./CheckOutForm";
+import { dividerClasses } from "@mui/material";
+import Button from "../components/Button";
 
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
@@ -70,8 +73,26 @@ const CheckoutClient = () => {
       <div className=" w-full">
         {clientSecret && cartProducts && (
           <Elements options={options} stripe={stripePromise}>
-            <CheckOutForm />
+            <CheckOutForm
+              clientSecret={clientSecret}
+              handlesetPaymentSuccess={handlesetPaymentSuccess}
+            />
           </Elements>
+        )}
+        {loading && <div className="text-center">Loading Checkout....</div>}
+        {error && (
+          <div className="text-center text-rose-500">Something went wrong</div>
+        )}
+        {paymentSucess && (
+          <div className="flex items-center flex-col gap-4">
+            <div className="text-teal-500">Payment Success</div>
+            <div className="max-w-[220px] w-full">
+              <Button
+                label="View Your Orders"
+                onClick={() => router.push("/order")}
+              />
+            </div>
+          </div>
         )}
       </div>
     </>
