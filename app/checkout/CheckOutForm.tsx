@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useCart } from "../hook/useCart";
 import {
+  AddressElement,
   PaymentElement,
   useElements,
   useStripe,
@@ -67,8 +68,18 @@ const CheckOutForm: React.FC<CheckOutFormProps> = ({
       <form onSubmit={handleSubmit} id="payment-form">
         <div className="mb-6 ">
           <Heading title="Enter your details to complete checkout" />
-          <h2 className=" font-semibold mt-4 mb-2">Payment Information</h2>
-          <PaymentElement />
+        </div>
+        <h2 className=" font-semibold mb-2">Address Information</h2>
+        <AddressElement
+          options={{
+            mode: "shipping",
+          }}
+        />
+        <h2 className=" font-semibold mt-4 mb-2">Payment Information</h2>
+
+        <PaymentElement id="payment-element" options={{ layout: "tabs" }} />
+        <div className="py-4 text-center text-slate-700 text-4xl font-bold">
+          Total: {formattedPrice}
         </div>
       </form>
     </>
