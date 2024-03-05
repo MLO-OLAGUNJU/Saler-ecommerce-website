@@ -1,58 +1,50 @@
 "use client";
-
-import React, { useEffect, useState } from "react";
-import { useCart } from "../hook/useCart";
+import { useEffect, useState } from "react";
+import { Router } from "next/router";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { useCart } from "../hook/useCart";
 
 const CheckoutClient = () => {
   const { cartProducts, paymentIntent, handleSetPaymentIntent } = useCart();
-  const [isLoading, setIsLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [clientSecret, setClientSecret] = useState("");
+
   const router = useRouter();
 
   useEffect(() => {
-    if (!cartProducts) return; // Exit early if cartProducts is null or undefined
+    if (cartProducts) {
+      setLoading(true);
+      setError(false);
 
-    setIsLoading(true);
-    setError(false);
-
-    fetch("api/create-payment-intent", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        items: cartProducts,
-        payment_intent_id: paymentIntent, // Pass paymentIntent here
-      }),
-    })
-      .then((res) => {
-        setIsLoading(false);
-        if (res.status === 401) {
-          return router.push("/login");
-        }
-        return res.json();
+      fetch("/api/create-payment-intent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          items: cartProducts,
+          payment_intent_id: paymentIntent,
+        }),
       })
-      .then((data) => {
-        setClientSecret(data.paymentIntent?.client_secret);
-        handleSetPaymentIntent(data.paymentIntent?.id);
-      })
-      .catch((error) => {
-        setError(true);
-        console.error("Error:", error);
-        toast.error("Something went wrong");
-      });
-  }, [cartProducts, paymentIntent]); // Include paymentIntent in the dependency array
-
-  return (
-    <>
-      <div>
-        <p>Checkout</p>
-      </div>
-    </>
-  );
+        .then((res) => {
+          setLoading(false);
+          if (res.status === 401) {
+            return router.push("/login");
+          }
+          return res.json();
+        })
+        .then((data) => {
+          setClientSecret(data.paymentIntent.client_secret);
+          handleSetPaymentIntent(data.paymentIntent.id);
+        })
+        .catch((error) => {
+          setError(true);
+          console.log("Error", error);
+          // toast.error("something went wrong");
+        });
+    }
+  }, [cartProducts, paymentIntent]);
+  return <>Checkout</>;
 };
 
 export default CheckoutClient;

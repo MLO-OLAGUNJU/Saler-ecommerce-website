@@ -38,15 +38,13 @@ export const CartContextProvider = (props: Props) => {
   const [cartProducts, setCartProducts] = useState<CartProductType[] | null>(
     null
   );
-
   const [paymentIntent, setPaymentIntent] = useState<string | null>(null);
 
   useEffect(() => {
     const cartItems: any = localStorage.getItem("SalerProductType");
     const cProducts: CartProductType[] | null = JSON.parse(cartItems);
-
     const SalerPaymentIntent: any = localStorage.getItem("SalerPaymentIntent");
-    const paymentIntent: string | null = JSON.parse(SalerPaymentIntent);
+    // const paymentIntent: string | null = JSON.parse(SalerPaymentIntent);
 
     setCartProducts(cProducts);
     setPaymentIntent(paymentIntent);
@@ -123,9 +121,7 @@ export const CartContextProvider = (props: Props) => {
       let updatedCart;
 
       if (product.qauntity === 99) {
-        return toast.error(
-          "You have reached the maximum number of quantity for this product"
-        );
+        return toast.error("Ooop Maximum Reached");
       }
       if (cartProducts) {
         updatedCart = [...cartProducts];
@@ -150,9 +146,7 @@ export const CartContextProvider = (props: Props) => {
       let updatedCart;
 
       if (product.qauntity === 1) {
-        return toast.error(
-          "You have reached the minimum number of quantity for this product"
-        );
+        return toast.error("Ooop Maximum Reached");
       }
       if (cartProducts) {
         updatedCart = [...cartProducts];
