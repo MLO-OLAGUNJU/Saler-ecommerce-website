@@ -40,7 +40,15 @@ export default async function handler(
       const charge: any = event.data.object as Stripe.Charge;
 
       if (typeof charge.payment_intent === "string") {
-        await prisma?.order.update;
+        await prisma?.order.update({
+          where: { paymentIntentId: charge.payment_intent },
+          data: { status: "complete", address: charge.shipping?.address },
+        });
       }
+      break;
+    default:
+      console.log("Unhandled event type: " + event.type);
   }
+
+  res.json({ received: true });
 }
