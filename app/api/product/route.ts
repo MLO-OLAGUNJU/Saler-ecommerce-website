@@ -8,12 +8,27 @@ export async function POST(request: Request) {
     return NextResponse.error();
   }
   const body = await request.json();
-  const { name, description, price, brand, category, inStock, images, reviews } =
-    body;
+  const {
+    name,
+    description,
+    price,
+    brand,
+    category,
+    inStock,
+    images,
+    reviews,
+  } = body;
   const product = await prisma.product.create({
     data: {
-     name,
-     description, brand, category, inStock, images, reviews, price: parseFloat(price)
+      name,
+      description,
+      brand,
+      category,
+      inStock,
+      images,
+      reviews,
+      price: parseFloat(price),
+    },
   });
-  return NextResponse.json(user);
+  return NextResponse.json(product);
 }
