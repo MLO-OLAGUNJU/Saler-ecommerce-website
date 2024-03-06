@@ -4,7 +4,7 @@ import CartClient from "./CartClient";
 import { getCurrentUser } from "@/actions/getCurrentUser";
 
 const Cart = async () => {
-  const currentUser = getCurrentUser();
+  const currentUser = await getCurrentUser();
   return (
     <div className="pt-8 text-[#0F1111] select-none ">
       <Container>
