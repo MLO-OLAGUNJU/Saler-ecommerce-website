@@ -10,6 +10,7 @@ import {
 import formatPrice from "@/utils/formatPrice";
 import toast from "react-hot-toast";
 import Heading from "../components/Heading";
+import Button from "../components/Button";
 
 interface CheckOutFormProps {
   clientSecret: string;
@@ -81,6 +82,11 @@ const CheckOutForm: React.FC<CheckOutFormProps> = ({
         <div className="py-4 text-center text-slate-700 text-4xl font-bold">
           Total: {formattedPrice}
         </div>
+        <Button
+          label={loading ? "Processing..." : "Pay now!"}
+          disabled={loading || !stripe || !elements}
+          onClick={() => {}}
+        />
       </form>
     </>
   );

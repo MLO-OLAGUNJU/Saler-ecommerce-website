@@ -9,8 +9,15 @@ import Button from "../components/Button";
 import ItemContent from "./ItemContent";
 import formatPrice from "@/utils/formatPrice";
 import { RiSecurePaymentLine } from "react-icons/ri";
+import { SafeUser } from "@/types";
+import { useRouter } from "next/navigation";
 
-const CartClient = () => {
+interface CartClientprops {
+  currentUser: SafeUser | null;
+}
+
+const CartClient: React.FC<CartClientprops> = ({ currentUser }) => {
+  const router = useRouter();
   const { cartProducts, handleClearCart, cartTotalAmount } = useCart();
   if (!cartProducts || cartProducts.length === 0) {
     return (
@@ -44,7 +51,7 @@ const CartClient = () => {
           <div className="grid grid-cols-5 text-xs gap-4  items-center bg-white p-5 font-semibold">
             <div className="col-span-2 justify-self-start">PRODUCT</div>
             <div className=" justify-self-center">PRICE</div>
-            <div className=" justify-self-center">qauntity</div>
+            <div className=" justify-self-center">QUANTITY</div>
             <div className="justify-self-end">TOTAL</div>
           </div>
 
@@ -83,7 +90,13 @@ const CartClient = () => {
                 Transactions are 100% Safe and Secure
               </p>
             </div>
-            <Button label="Continue to Checkout" onClick={() => {}} />
+            <Button
+              label={currentUser ? "Continue to Checkout" : "Login to Checkout"}
+              outline={currentUser ? false : true}
+              onClick={() => {
+                currentUser ? router.push("/checkout") : router.push("/login");
+              }}
+            />
 
             <div className="w-[90px] mt-5">
               <Button
