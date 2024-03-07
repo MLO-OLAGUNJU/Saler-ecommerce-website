@@ -2,15 +2,12 @@
 
 import { Order, Product, User } from "@prisma/client";
 import React, { useCallback } from "react";
-import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import formatPrice from "@/utils/formatPrice";
 import Heading from "@/app/components/Heading";
 import Status from "@/app/components/Status";
 import {
   MdAccessTimeFilled,
-  MdCached,
-  MdClose,
-  MdDelete,
   MdDeliveryDining,
   MdDone,
   MdRemoveRedEye,
@@ -19,8 +16,6 @@ import ActionBtn from "@/app/components/ActionBtn";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { deleteObject, getStorage, ref } from "firebase/storage";
-import firebaseApp from "@/libs/firebase";
 import moment from "moment";
 
 interface ManageOrdersClientProps {
@@ -49,12 +44,12 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
   }
 
   const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 220 },
-    { field: "customer", headerName: "Customer Name", width: 130 },
+    { field: "id", headerName: "ID", width: 100 },
+    { field: "customer", headerName: "Customer Name", width: 200 },
     {
       field: "amount",
       headerName: "Amount(USD)",
-      width: 130,
+      width: 145,
       renderCell: (params) => {
         return (
           <div className=" font-bold text-slate-800">{params.row.amount}</div>
@@ -65,7 +60,7 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
     {
       field: "paymentStatus",
       headerName: "Payment Status",
-      width: 130,
+      width: 145,
       renderCell: (params) => {
         return (
           <div>
@@ -80,8 +75,8 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
               <Status
                 text="completed"
                 icon={MdDone}
-                bg="bg-purple-200"
-                color="text-purple-700"
+                bg="bg-green-200"
+                color="text-green-700"
               />
             ) : (
               <></>
@@ -93,7 +88,7 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
     {
       field: "deliveryStatus",
       headerName: "Delivery Status",
-      width: 130,
+      width: 145,
       renderCell: (params) => {
         return (
           <div>
@@ -129,12 +124,12 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
     {
       field: "date",
       headerName: "Date",
-      width: 130,
+      width: 120,
     },
     {
       field: "action",
       headerName: "Actions",
-      width: 240,
+      width: 220,
       renderCell: (params) => {
         return (
           <div className="flex justify-between gap-4 w-full">
