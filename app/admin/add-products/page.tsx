@@ -13,7 +13,7 @@ const AddProducts = async () => {
   }
 
   return (
-    <div className="pt-8 text-[#0F1111] select-none ">
+    <div className="pt-8 bg-white text-[#0F1111] select-none ">
       <Container>
         <FormWrap>
           <AddProductForm />
