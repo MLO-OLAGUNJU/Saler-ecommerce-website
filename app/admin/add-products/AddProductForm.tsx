@@ -1,5 +1,6 @@
 "use client";
 
+import Button from "@/app/components/Button";
 import Heading from "@/app/components/Heading";
 import CategoryInput from "@/app/components/inputs/CategoryInput";
 import CustomCheckbox from "@/app/components/inputs/CustomCheckbox";
@@ -9,7 +10,7 @@ import TextArea from "@/app/components/inputs/TextArea";
 import { Categories } from "@/utils/Categories";
 import { colors } from "@/utils/Colors";
 import React, { useCallback, useEffect, useState } from "react";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 export type ImageType = {
   color: string;
@@ -29,7 +30,6 @@ const AddProductForm = () => {
 
   const [isProductCreated, setIsProductCreated] = useState(false);
 
-  console.log("images>>>>>>>>>>>>>>", images);
   const {
     register,
     handleSubmit,
@@ -62,6 +62,9 @@ const AddProductForm = () => {
     }
   }, [isProductCreated]);
 
+  const onsubmit: SubmitHandler<FieldValues> = async (data) => {
+    console.log("Product Data", data);
+  };
   const category = watch("category");
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value),
@@ -117,6 +120,15 @@ const AddProductForm = () => {
         required
         autoFocus={false}
       />
+      <Input
+        id="brand"
+        label="Brand"
+        disabled={loading}
+        register={register}
+        errors={errors}
+        required
+        autoFocus={false}
+      />
       <TextArea
         id="description"
         label="Description"
@@ -129,6 +141,7 @@ const AddProductForm = () => {
       <CustomCheckbox
         id={"inStock"}
         register={register}
+        required={true}
         label="This Product is in stock"
       />
 
@@ -178,6 +191,10 @@ const AddProductForm = () => {
           })}
         </div>
       </div>
+      <Button
+        label={loading ? "Loading..." : "Add Products"}
+        onClick={handleSubmit(onsubmit)}
+      />
     </>
   );
 };
