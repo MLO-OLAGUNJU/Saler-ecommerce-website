@@ -10,6 +10,18 @@ import { colors } from "@/utils/Colors";
 import React, { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
+export type ImageType = {
+  color: string;
+  colorCode: string;
+  image: File | null;
+};
+
+export type UploadedImageType = {
+  color: string;
+  colorCode: string;
+  image: string;
+};
+
 const AddProductForm = () => {
   const [loading, setLoading] = useState(false);
   const {
