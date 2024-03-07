@@ -17,8 +17,8 @@ import ActionBtn from "@/app/components/ActionBtn";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { error } from "console";
 import { deleteObject, getStorage, ref } from "firebase/storage";
+import firebaseApp from "@/libs/firebase";
 
 interface ManageProductsClientProps {
   products: Product[];
@@ -28,7 +28,7 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
   products,
 }) => {
   const router = useRouter();
-  const storage = getStorage();
+  const storage = getStorage(firebaseApp);
   let rows: any = [];
 
   if (products) {
@@ -99,8 +99,18 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
                 handleToggleStock(params.row.id, params.row.inStock);
               }}
             />
-            <ActionBtn icon={MdDelete} onClick={() => {}} />
-            <ActionBtn icon={MdRemoveRedEye} onClick={() => {}} />
+            <ActionBtn
+              icon={MdDelete}
+              onClick={() => {
+                handleDelete(params.row.id, params.row.images);
+              }}
+            />
+            <ActionBtn
+              icon={MdRemoveRedEye}
+              onClick={() => {
+                router.push(`product/${params.row.id}`);
+              }}
+            />
           </div>
         );
       },
@@ -123,7 +133,7 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
       });
   }, []);
 
-  const handleDelete = useCallback((id: string, images: any[]) => {
+  const handleDelete = useCallback(async (id: string, images: any[]) => {
     toast("Deleting product, please wait.....");
 
     const handleImageDelete = async () => {
@@ -139,6 +149,18 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
         return console.log("Deleting images error", error);
       }
     };
+
+    await handleImageDelete();
+
+    axios
+      .delete(`/api/product/${id}`)
+      .then((res) => {
+        toast.success("Product deleted successfully ");
+        router.refresh();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
   return (
     <div className=" max-w-[1150px] m-auto text-xl">
