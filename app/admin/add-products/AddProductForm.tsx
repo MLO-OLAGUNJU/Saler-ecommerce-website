@@ -8,7 +8,7 @@ import SelectColor from "@/app/components/inputs/SelectColor";
 import TextArea from "@/app/components/inputs/TextArea";
 import { Categories } from "@/utils/Categories";
 import { colors } from "@/utils/Colors";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
 export type ImageType = {
@@ -25,6 +25,11 @@ export type UploadedImageType = {
 
 const AddProductForm = () => {
   const [loading, setLoading] = useState(false);
+  const [images, setImages] = useState<ImageType[] | null>(null);
+
+  const [isProductCreated, setIsProductCreated] = useState(false);
+
+  console.log("images>>>>>>>>>>>>>>", images);
   const {
     register,
     handleSubmit,
@@ -45,6 +50,18 @@ const AddProductForm = () => {
     },
   });
 
+  useEffect(() => {
+    setCustomValue("images", images);
+  }, [images]);
+
+  useEffect(() => {
+    if (isProductCreated) {
+      reset();
+      setImages(null);
+      setIsProductCreated(false);
+    }
+  }, [isProductCreated]);
+
   const category = watch("category");
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value),
@@ -54,6 +71,29 @@ const AddProductForm = () => {
         shouldTouch: true,
       };
   };
+
+  const addImageToState = useCallback((value: ImageType) => {
+    setImages((prev) => {
+      if (!prev) {
+        return [value];
+      }
+
+      return [...prev, value];
+    });
+  }, []);
+
+  const removeImageFromState = useCallback((value: ImageType) => {
+    setImages((prev) => {
+      if (prev) {
+        const filteredImages = prev.filter(
+          (item) => item.color !== value.color
+        );
+
+        return filteredImages;
+      }
+      return prev;
+    });
+  }, []);
 
   return (
     <>
@@ -130,9 +170,9 @@ const AddProductForm = () => {
               <SelectColor
                 key={index}
                 item={item}
-                addImageToState={() => {}}
-                removeImageFromState={() => {}}
-                isProductCreated={false}
+                addImageToState={addImageToState}
+                removeImageFromState={removeImageFromState}
+                isProductCreated={isProductCreated}
               />
             );
           })}
