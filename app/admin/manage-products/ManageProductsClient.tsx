@@ -5,6 +5,7 @@ import React from "react";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { product } from "@/utils/product";
 import formatPrice from "@/utils/formatPrice";
+import Heading from "@/app/components/Heading";
 
 interface ManageProductsClientProps {
   products: Product[];
@@ -57,25 +58,31 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
     {
       field: "action",
       headerName: "Actions",
-      width: 250,
+      width: 240,
       renderCell: (params) => {
         return <div>Action</div>;
       },
     },
   ];
   return (
-    <div>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-      />
+    <div className=" max-w-[1150px] m-auto text-xl">
+      <div className=" mb-4 mt-8">
+        <Heading title="Manange Products" />
+      </div>
+
+      <div style={{ height: 600, width: "100%" }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 9 },
+            },
+          }}
+          pageSizeOptions={[9, 20]}
+          checkboxSelection
+        />
+      </div>
     </div>
   );
 };
