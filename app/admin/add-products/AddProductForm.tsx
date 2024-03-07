@@ -7,10 +7,13 @@ import CustomCheckbox from "@/app/components/inputs/CustomCheckbox";
 import Input from "@/app/components/inputs/Input";
 import SelectColor from "@/app/components/inputs/SelectColor";
 import TextArea from "@/app/components/inputs/TextArea";
+import firebaseApp from "@/libs/firebase";
 import { Categories } from "@/utils/Categories";
 import { colors } from "@/utils/Colors";
 import React, { useCallback, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { getStorage } from "firebase/storage";
+import toast from "react-hot-toast";
 
 export type ImageType = {
   color: string;
@@ -64,6 +67,33 @@ const AddProductForm = () => {
 
   const onsubmit: SubmitHandler<FieldValues> = async (data) => {
     console.log("Product Data", data);
+
+    // upload images to firebase
+    //save procuct to mongodb
+    setLoading(true);
+    let uploadedImages: UploadedImageType[] = [];
+
+    if (!data.category) {
+      setLoading(false);
+      return toast.error("Category is not selected");
+    }
+
+    if (!data.images || data.images.length === 0) {
+      setLoading(false);
+      return toast.error("No iamge was selected");
+    }
+
+    const handleImageUpload = async () => {
+      toast("Creating product, please wait....");
+      try {
+        for (const item of data.iamges) {
+          if (item.images) {
+            const fileName = new Date().getTime() + "-" + item.image.name;
+            const storage = getStorage(firebaseApp);
+          }
+        }
+      } catch (error) {}
+    };
   };
   const category = watch("category");
   const setCustomValue = (id: string, value: any) => {
