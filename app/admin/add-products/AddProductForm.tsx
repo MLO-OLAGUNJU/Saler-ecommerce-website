@@ -93,7 +93,7 @@ const AddProductForm = () => {
       toast("Creating product, please wait....");
       try {
         for (const item of data.images) {
-          if (item.images) {
+          if (item.image) {
             const fileName = new Date().getTime() + "-" + item.image.name;
             const storage = getStorage(firebaseApp);
             const storageRef = ref(storage, `products/${fileName}`);
@@ -105,9 +105,7 @@ const AddProductForm = () => {
                 (snapshot) => {
                   const progress =
                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-
                   console.log("Upload is " + progress + "% done");
-
                   switch (snapshot.state) {
                     case "paused":
                       console.log("Upload is paused");
@@ -123,9 +121,6 @@ const AddProductForm = () => {
                   reject(error);
                 },
                 () => {
-                  //Handle successful uploads on complete
-                  //For instance, get the download URL: https://firebasestorage.googleapis.com/...
-
                   getDownloadURL(uploadTask.snapshot.ref)
                     .then((downloadURL) => {
                       uploadedImages.push({
@@ -133,7 +128,6 @@ const AddProductForm = () => {
                         image: downloadURL,
                       });
                       console.log("File available at ", downloadURL);
-
                       resolve();
                     })
                     .catch((error) => {
