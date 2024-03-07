@@ -19,7 +19,9 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import toast from "react-hot-toast";
-import { FaSketch } from "react-icons/fa";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { error } from "console";
 
 export type ImageType = {
   color: string;
@@ -38,6 +40,8 @@ const AddProductForm = () => {
   const [images, setImages] = useState<ImageType[] | null>(null);
 
   const [isProductCreated, setIsProductCreated] = useState(false);
+
+  const router = useRouter();
 
   const {
     register,
@@ -148,7 +152,20 @@ const AddProductForm = () => {
 
     await handleImageUpload();
     const productData = { ...data, images: uploadedImages };
-    console.log(productData);
+
+    axios
+      .post("/api/product", productData)
+      .then(() => {
+        toast.success("Product created");
+        setIsProductCreated(true);
+        router.refresh();
+      })
+      .catch((error) => {
+        toast.error("Something went wrong saving the product to the db");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   const category = watch("category");
