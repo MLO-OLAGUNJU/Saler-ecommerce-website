@@ -1,6 +1,6 @@
 "use client";
 import { ImageType } from "@/app/admin/add-products/AddProductForm";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 interface SelectColorProps {
   item: ImageType;
@@ -23,7 +23,27 @@ const SelectColor: React.FC<SelectColorProps> = ({
       setFile(null);
     }
   }, [isProductCreated]);
-  return <div></div>;
+
+  const handleFileChange = useCallback((value: File) => {
+    setFile(value);
+    addImageToState({ ...item, image: value });
+  }, []);
+
+  const handleCheck = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsSelected(e.target.checked);
+
+    if (!e.target.checked) {
+      setFile(null);
+      removeImageFromState(item);
+    }
+  }, []);
+  return (
+    <>
+      <div className="grid grid-cols-1 md:grid-cols-1">
+        <div></div>
+      </div>
+    </>
+  );
 };
 
 export default SelectColor;
