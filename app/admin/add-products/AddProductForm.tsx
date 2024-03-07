@@ -92,7 +92,7 @@ const AddProductForm = () => {
     const handleImageUpload = async () => {
       toast("Creating product, please wait....");
       try {
-        for (const item of data.iamges) {
+        for (const item of data.images) {
           if (item.images) {
             const fileName = new Date().getTime() + "-" + item.image.name;
             const storage = getStorage(firebaseApp);
