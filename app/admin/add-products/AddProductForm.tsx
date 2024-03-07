@@ -6,6 +6,7 @@ import CustomCheckbox from "@/app/components/inputs/CustomCheckbox";
 import Input from "@/app/components/inputs/Input";
 import TextArea from "@/app/components/inputs/TextArea";
 import { Categories } from "@/utils/Categories";
+import { colors } from "@/utils/Colors";
 import React, { useState } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 
@@ -110,7 +111,11 @@ const AddProductForm = () => {
           </div>
         </div>
 
-        <div>s</div>
+        <div key={index} className="grid grid-cols-2 gap-3">
+          {colors.map((item, index) => {
+            return <></>;
+          })}
+        </div>
       </div>
     </>
   );
