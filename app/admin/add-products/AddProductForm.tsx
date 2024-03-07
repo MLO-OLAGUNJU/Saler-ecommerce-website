@@ -1,6 +1,7 @@
 "use client";
 
 import Heading from "@/app/components/Heading";
+import CustomCheckbox from "@/app/components/inputs/CustomCheckbox";
 import Input from "@/app/components/inputs/Input";
 import TextArea from "@/app/components/inputs/TextArea";
 import { error } from "console";
@@ -58,6 +59,17 @@ const AddProductForm = () => {
         errors={errors}
         required
       />
+
+      <CustomCheckbox
+        id={"inStock"}
+        register={register}
+        label="This Product is in stock"
+      />
+
+      <div className=" w-full font-medium">
+        <div className="mb-2 font-semibold">Select a Category</div>
+        <div className="grid grid-cols-2 md:grid-cols-3 max-h-[50vh] overflow-y-auto"></div>
+      </div>
     </>
   );
 };
