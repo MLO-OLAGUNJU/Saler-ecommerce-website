@@ -123,7 +123,7 @@ const AddProductForm = () => {
           </div>
         </div>
 
-        <div key={index} className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-3">
           {colors.map((item, index) => {
             return <></>;
           })}
