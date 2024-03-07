@@ -4,6 +4,7 @@ import Heading from "@/app/components/Heading";
 import CustomCheckbox from "@/app/components/inputs/CustomCheckbox";
 import Input from "@/app/components/inputs/Input";
 import TextArea from "@/app/components/inputs/TextArea";
+import { Categories } from "@/utils/Categories";
 import { error } from "console";
 import React, { useState } from "react";
 import { FieldValue, FieldValues, useForm } from "react-hook-form";
@@ -68,7 +69,13 @@ const AddProductForm = () => {
 
       <div className=" w-full font-medium">
         <div className="mb-2 font-semibold">Select a Category</div>
-        <div className="grid grid-cols-2 md:grid-cols-3 max-h-[50vh] overflow-y-auto"></div>
+        <div className="grid grid-cols-2 md:grid-cols-3 max-h-[50vh] overflow-y-auto">
+          {Categories.map((item) => {
+            if (item.label === "All") {
+              return null;
+            }
+          })}
+        </div>
       </div>
     </>
   );
