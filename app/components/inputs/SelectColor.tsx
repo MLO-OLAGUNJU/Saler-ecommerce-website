@@ -1,6 +1,8 @@
 "use client";
 import { ImageType } from "@/app/admin/add-products/AddProductForm";
 import React, { useCallback, useEffect, useState } from "react";
+import SelectImage from "./SelectImage";
+import Button from "../Button";
 
 interface SelectColorProps {
   item: ImageType;
@@ -54,7 +56,22 @@ const SelectColor: React.FC<SelectColorProps> = ({
         </div>
         <>
           {isSelected && !file && (
-            <div className=" col-span-2 text-center"></div>
+            <div className=" col-span-2 text-center">
+              <SelectImage item={item} handleFileChange={handleFileChange} />
+            </div>
+          )}
+          {file && (
+            <div className="flex flex-row gap-2 text-sm col-span-2 items-center justify-between">
+              <p>{file?.name}</p>
+              <div className=" w-[70px]">
+                <Button
+                  label="Cancel"
+                  onClick={() => {
+                    setFile(null), removeImageFromState(item);
+                  }}
+                />
+              </div>
+            </div>
           )}
         </>
       </div>
