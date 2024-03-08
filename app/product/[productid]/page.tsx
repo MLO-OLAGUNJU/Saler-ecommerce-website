@@ -4,13 +4,17 @@ import React from "react";
 import { products } from "@/utils/products";
 import ProductDetails from "./ProductDetails";
 import ListRating from "./ListRating";
+import getProductById from "@/actions/getProductById";
+import NullData from "@/app/components/NullData";
 
 interface IPrams {
   productId?: string;
 }
 
-const Product = ({ params }: { params: IPrams }) => {
-  const product = products.find((item) => item.id === params.productId);
+const Product = async ({ params }: { params: IPrams }) => {
+  const product = await getProductById(params);
+
+  if (!product) return <NullData title="Oops! Product not found!" />;
 
   return (
     <div className="text-[#0F1111] select-none pt-8">

@@ -1,14 +1,15 @@
 import { MdOutlineKeyboard, MdStorefront, MdTv, MdWatch } from "react-icons/md";
 import { AiFillPhone, AiOutlineDesktop, AiOutlineLaptop } from "react-icons/ai";
+import { IoPhonePortrait } from "react-icons/io5";
 
-export const Categories = [
+export const categories = [
   {
     label: "All",
     icon: MdStorefront,
   },
   {
     label: "Phone",
-    icon: AiFillPhone,
+    icon: IoPhonePortrait,
   },
   {
     label: "Laptop",
