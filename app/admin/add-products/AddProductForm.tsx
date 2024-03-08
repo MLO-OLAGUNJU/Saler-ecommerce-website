@@ -8,7 +8,7 @@ import Input from "@/app/components/inputs/Input";
 import SelectColor from "@/app/components/inputs/SelectColor";
 import TextArea from "@/app/components/inputs/TextArea";
 import firebaseApp from "@/libs/firebase";
-import { Categories } from "@/utils/Categories";
+import { categories } from "@/utils/Categories";
 import { colors } from "@/utils/Colors";
 import React, { useCallback, useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
@@ -251,7 +251,7 @@ const AddProductForm = () => {
       <div className=" w-full font-medium">
         <div className="mb-2 font-semibold">Select a Category</div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-h-[50vh] overflow-y-auto">
-          {Categories.map((item) => {
+          {categories.map((item) => {
             if (item.label === "All") {
               return null;
             }
