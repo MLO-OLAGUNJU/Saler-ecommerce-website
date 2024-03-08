@@ -37,7 +37,7 @@ const AdminNav = () => {
           </Link>
           <Link href={"/admin/manage-orders"}>
             <AdminNavItem
-              label="Manage Products"
+              label="Manage Orders"
               selected={pathname === "/admin/manage-orders"}
               icon={MdFormatListBulleted}
             />
