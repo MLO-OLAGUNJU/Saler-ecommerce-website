@@ -15,7 +15,7 @@ export default async function Home({ searchParams }: HomeProps) {
 
   if (products.length === 0) {
     return (
-      <NullData title="OOps! No products found. Click 'All' to clean filters" />
+      <NullData title="OOps! No products found. Click on category All to clean filters" />
     );
   }
 
