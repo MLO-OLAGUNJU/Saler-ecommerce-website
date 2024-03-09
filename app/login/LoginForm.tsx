@@ -106,7 +106,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
       />
 
       <p className="flex items-center gap-2">
-        Don't have an Account?
+        Do not have an Account?
         <Link href={"/register"} className="font-semibold">
           Create an account Here!
         </Link>
