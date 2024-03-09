@@ -23,7 +23,7 @@ const Admin = async () => {
     <div className="pt-8 text-[#0F1111] select-none bg-white ">
       <Container>
         <Summary products={products} orders={orders} users={users} />
-        <div className="mt-4 mx-auto max-w-[1150px]">
+        <div className="mt-4 mx-auto max-w-[1150px]s">
           <BarGraph data={graphData} />
         </div>
       </Container>

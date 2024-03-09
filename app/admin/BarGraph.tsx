@@ -23,8 +23,33 @@ type GraphData = {
   totalAmount: number;
 };
 const BarGraph: React.FC<BarGraphProps> = ({ data }) => {
-  console.log(data);
-  return <div></div>;
+  const labels = data.map((item) => item.day);
+  const amounts = data.map((item) => item.totalAmount / 100);
+
+  const chartData = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Your Saler Sale Amount",
+        data: amounts,
+        backgroundColor: "#F9A024",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const options = {
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
+  };
+  return (
+    <div className="h-[70vh]">
+      <Bar data={chartData} options={options}></Bar>
+    </div>
+  );
 };
 
 export default BarGraph;

@@ -77,7 +77,7 @@ const Summary: React.FC<SummryProps> = ({ orders, products, users }) => {
   return (
     <div className=" max-w-[1150px] mx-auto  bg-white">
       <div className=" pb-4 pt-8">
-        <Heading title="Your Seller Statistics" center />
+        <Heading title="Your Saler seller stats" center />
       </div>
       <div className="grid grid-cols-2 gap-3 max-h-[80vh] overflow-y-auto p-8">
         {summaryKeys &&
