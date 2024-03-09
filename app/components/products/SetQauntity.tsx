@@ -1,6 +1,6 @@
 "use client";
 
-import { CartProductType } from "@/app/product/[productId]/ProductDetails";
+import type { CartProductType } from "@/app/product/[productId]/ProductDetails";
 import React from "react";
 
 interface setQtyProps {
