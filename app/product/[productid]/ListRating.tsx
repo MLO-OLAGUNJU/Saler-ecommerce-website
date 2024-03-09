@@ -4,8 +4,8 @@ import Heading from "@/app/components/Heading";
 import { Rating } from "@mui/material";
 import moment from "moment";
 import React from "react";
-import { Horizontal } from "./ProductDetails";
 import Avatar from "@/app/components/Avatar";
+import Horizontal from "@/app/components/Horizontal";
 
 interface ListRatingProps {
   product: any;
