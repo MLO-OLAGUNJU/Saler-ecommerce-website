@@ -34,7 +34,7 @@ export type SelectedImgType = {
   image: string;
 };
 
-export const Horizontal = () => {
+const Horizontal = () => {
   return <hr className="borderBottom" />;
 };
 

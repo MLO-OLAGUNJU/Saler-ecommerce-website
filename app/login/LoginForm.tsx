@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import Heading from "../components/Heading";
-import { Horizontal } from "../product/[productId]/ProductDetails";
 import Input from "../components/inputs/Input";
 import { FieldValues, useForm, SubmitHandler } from "react-hook-form";
 import Button from "../components/Button";
@@ -13,6 +12,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useCart } from "../hook/useCart";
 import { SafeUser } from "@/types";
+import Horizontal from "../components/Horizontal";
 
 interface LoginFormProps {
   currentUser: SafeUser | null;
