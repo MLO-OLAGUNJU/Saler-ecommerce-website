@@ -16,11 +16,9 @@ interface AddRatingProps {
   product: Product & {
     reviews: Review[];
   };
-  user:
-    | (SafeUser & {
-        orders: Order[];
-      })
-    | null;
+  user: SafeUser & {
+    orders: Order[];
+  };
 }
 const AddRating: React.FC<AddRatingProps> = ({ product, user }) => {
   const [loading, setLoading] = useState(false);
