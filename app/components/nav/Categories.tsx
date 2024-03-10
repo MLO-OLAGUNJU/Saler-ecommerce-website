@@ -8,8 +8,8 @@ import {
   useSearchParams,
 } from "next/dist/client/components/navigation";
 
-const Categories = () => {
-  const params = useSearchParams();
+const Categories = async () => {
+  const params = await useSearchParams();
   const category = params?.get("category");
 
   const pathname = usePathname();

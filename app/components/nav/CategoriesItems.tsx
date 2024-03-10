@@ -9,13 +9,13 @@ interface CategoriesItemsProps {
   icon: IconType;
   selected?: boolean;
 }
-const CategoriesItems: React.FC<CategoriesItemsProps> = ({
+const CategoriesItems: React.FC<CategoriesItemsProps> = async ({
   label,
   icon: Icon,
   selected,
 }) => {
   const router = useRouter();
-  const params = useSearchParams();
+  const params = await useSearchParams();
 
   const handleClick = useCallback(() => {
     if (label === "All") {
