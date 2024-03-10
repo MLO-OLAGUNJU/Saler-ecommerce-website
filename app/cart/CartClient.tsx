@@ -13,7 +13,7 @@ import { SafeUser } from "@/types";
 import { useRouter } from "next/navigation";
 
 interface CartClientprops {
-  currentUser: SafeUser | null;
+  currentUser?: SafeUser | null;
 }
 
 const CartClient: React.FC<CartClientprops> = ({ currentUser }) => {

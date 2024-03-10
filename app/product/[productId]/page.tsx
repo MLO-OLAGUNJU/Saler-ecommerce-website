@@ -1,7 +1,5 @@
 import Container from "@/app/components/Container";
-import { product } from "@/utils/product";
 import React from "react";
-import { products } from "@/utils/products";
 import ProductDetails from "./ProductDetails";
 import ListRating from "./ListRating";
 import getProductById from "@/actions/getProductById";
@@ -10,7 +8,7 @@ import AddRating from "./AddRating";
 import { getCurrentUser } from "@/actions/getCurrentUser";
 
 interface IPrams {
-  productId?: string;
+  productId: string;
 }
 
 const Product = async ({ params }: { params: IPrams }) => {

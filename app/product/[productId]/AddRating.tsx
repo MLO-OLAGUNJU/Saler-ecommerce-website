@@ -16,7 +16,7 @@ interface AddRatingProps {
   product: Product & {
     reviews: Review[];
   };
-  user:
+  user?:
     | (SafeUser & {
         orders: Order[];
       })

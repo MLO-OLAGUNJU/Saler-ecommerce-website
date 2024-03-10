@@ -15,7 +15,7 @@ import { SafeUser } from "@/types";
 import Horizontal from "../components/Horizontal";
 
 interface RegisterFormProps {
-  currentUser: SafeUser | null;
+  currentUser?: SafeUser | null;
 }
 
 const RegisterForm: React.FC<RegisterFormProps> = ({ currentUser }) => {

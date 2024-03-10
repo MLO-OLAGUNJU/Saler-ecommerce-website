@@ -24,7 +24,7 @@ const SearchBar = () => {
       {
         url: "/",
         query: {
-          searchTerm: data.searchTerm,
+          // searchTerm: data.searchTerm,
         },
       },
       { skipNull: true }
