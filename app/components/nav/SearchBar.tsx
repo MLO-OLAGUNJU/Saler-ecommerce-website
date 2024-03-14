@@ -44,16 +44,16 @@ const SearchBar = () => {
         {...register("searchTerm")}
         autoComplete="off"
         type="text"
-        placeholder="Find a product..."
+        placeholder="Search Saler"
         className=" text-black p-2 border-gray-300 rounded-l-md focus:outline-none focus:border-[0.5px] focus:border-slate-500 w-80"
       />
 
       <button
         onClick={handleSubmit(onSubmit)}
-        className="flex items-center justify-center bg-slate-700 hover:opacity-80 text-white p-2 px-4 rounded-r-md"
+        className="flex items-center gap-1 justify-center bg-[#F9A024] hover:opacity-80 text-white p-2 px-4 rounded-r-md"
       >
-        <span>Find</span>
-        <FaMagnifyingGlass size={15} />
+        <FaMagnifyingGlass size={25} />
+        {/* <span>Find</span> */}
       </button>
     </div>
   );
