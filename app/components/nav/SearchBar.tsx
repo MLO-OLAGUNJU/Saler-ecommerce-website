@@ -53,7 +53,7 @@ const SearchBar = () => {
         className="flex items-center justify-center bg-slate-700 hover:opacity-80 text-white p-2 px-4 rounded-r-md"
       >
         <span>Find</span>
-        <FaMagnifyingGlass size={30} />
+        <FaMagnifyingGlass size={20} />
       </button>
     </div>
   );
