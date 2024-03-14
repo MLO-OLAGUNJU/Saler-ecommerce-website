@@ -1,3 +1,4 @@
+"use client";
 import { useRouter } from "next/navigation";
 import queryString from "query-string";
 import React from "react";
@@ -16,7 +17,7 @@ const SearchBar = () => {
     },
   });
 
-  const onSubmit: SubmitErrorHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitErrorHandler<FieldValues> = async (data) => {
     if (!data.searchTerm) return router.push("/");
 
     const url = queryString.stringify(
