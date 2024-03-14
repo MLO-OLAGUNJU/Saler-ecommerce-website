@@ -1,5 +1,7 @@
 "use client";
 
+import { HiMagnifyingGlassCircle } from "react-icons/hi2";
+
 import { useRouter } from "next/navigation";
 import queryString from "query-string";
 import React from "react";
@@ -48,9 +50,10 @@ const SearchBar = () => {
 
       <button
         onClick={handleSubmit(onSubmit)}
-        className=" bg-slate-700 hover:opacity-80 text-white p-2 rounded-r-md"
+        className="flex items-center justify-center bg-slate-700 hover:opacity-80 text-white p-2 px-4 rounded-r-md"
       >
-        Find
+        <span>Find</span>
+        <HiMagnifyingGlassCircle />
       </button>
     </div>
   );
