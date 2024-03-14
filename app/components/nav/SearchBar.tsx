@@ -1,6 +1,6 @@
 "use client";
 
-import { HiMagnifyingGlassCircle } from "react-icons/hi2";
+import { FaMagnifyingGlass } from "react-icons/fa6";
 
 import { useRouter } from "next/navigation";
 import queryString from "query-string";
@@ -53,7 +53,7 @@ const SearchBar = () => {
         className="flex items-center justify-center bg-slate-700 hover:opacity-80 text-white p-2 px-4 rounded-r-md"
       >
         <span>Find</span>
-        <HiMagnifyingGlassCircle />
+        <FaMagnifyingGlass size={30} />
       </button>
     </div>
   );
