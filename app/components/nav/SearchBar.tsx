@@ -20,11 +20,11 @@ const SearchBar = () => {
   const onSubmit: SubmitErrorHandler<FieldValues> = async (data) => {
     if (!data.searchTerm) return router.push("/");
 
-    const url = queryString.stringifyUrl(
+    const url = queryString.stringify(
       {
         url: "/",
         query: {
-          // searchTerm: data.searchTerm,
+          searchTerm: data.searchTerm,
         },
       },
       { skipNull: true }

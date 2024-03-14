@@ -3,13 +3,10 @@ import React from "react";
 import Container from "../Container";
 import { categories } from "@/utils/Categories";
 import CategoriesItems from "./CategoriesItems";
-import {
-  usePathname,
-  useSearchParams,
-} from "next/dist/client/components/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
-const Categories = async () => {
-  const params = await useSearchParams();
+const Categories = () => {
+  const params = useSearchParams();
   const category = params?.get("category");
 
   const pathname = usePathname();

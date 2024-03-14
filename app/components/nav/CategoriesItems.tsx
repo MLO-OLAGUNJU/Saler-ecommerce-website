@@ -1,5 +1,6 @@
-import { useSearchParams } from "next/dist/client/components/navigation";
-import { useRouter } from "next/navigation";
+"use client";
+
+import { useRouter, useSearchParams } from "next/navigation";
 import queryString from "query-string";
 import React, { useCallback } from "react";
 import { IconType } from "react-icons";
@@ -9,13 +10,13 @@ interface CategoriesItemsProps {
   icon: IconType;
   selected?: boolean;
 }
-const CategoriesItems: React.FC<CategoriesItemsProps> = async ({
+const CategoriesItems: React.FC<CategoriesItemsProps> = ({
   label,
   icon: Icon,
   selected,
 }) => {
   const router = useRouter();
-  const params = await useSearchParams();
+  const params = useSearchParams();
 
   const handleClick = useCallback(() => {
     if (label === "All") {

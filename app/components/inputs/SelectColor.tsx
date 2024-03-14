@@ -1,5 +1,5 @@
 "use client";
-import { ImageType } from "@/app/admin/add-products/AddProductForm";
+import { ImageType } from "../../../app/admin/add-products/AddProductForm";
 import React, { useCallback, useEffect, useState } from "react";
 import SelectImage from "./SelectImage";
 import Button from "../Button";

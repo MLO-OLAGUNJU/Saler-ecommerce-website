@@ -21,7 +21,6 @@ import {
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { error } from "console";
 
 export type ImageType = {
   color: string;
