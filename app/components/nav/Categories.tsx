@@ -5,6 +5,9 @@ import { categories } from "@/utils/Categories";
 import CategoriesItems from "./CategoriesItems";
 import { usePathname, useSearchParams } from "next/navigation";
 
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
+
 const Categories = () => {
   const params = useSearchParams();
   const category = params?.get("category");
