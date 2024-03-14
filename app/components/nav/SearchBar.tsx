@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import queryString from "query-string";
 import React from "react";
-import { FieldValues, SubmitErrorHandler, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 const SearchBar = () => {
   const router = useRouter();
@@ -17,7 +17,7 @@ const SearchBar = () => {
     },
   });
 
-  const onSubmit: SubmitErrorHandler<FieldValues> = async (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     if (!data.searchTerm) return router.push("/");
 
     const url = queryString.stringify(
